@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = "https://example.com"
   spec.metadata["changelog_uri"] = "https://example.com"
 
-  spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 1.21' 
-  spec.add_runtime_dependency 'json'
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rubocop", "~> 1.21"
+  spec.add_runtime_dependency "json"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

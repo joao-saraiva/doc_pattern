@@ -13,35 +13,34 @@ class DocPattern
 
   def read_json(path)
     file = File.read(path)
-    @doc_pattern ||= JSON.parse(file)
+    @doc_pattern = JSON.parse(file)
   end
 
   def sorted_line_keys
-    @sorted_keys ||= @doc_pattern.keys.select {|key| key.include?('line_')}.sort @doc_pattern.instance_of?(Hash)
+    @sorted_line_keys ||= @doc_pattern.keys.select { |key| key.include?("line_") }.sort @doc_pattern.instance_of?(Hash)
   end
 
   def until_line?(key)
-    key.include?('..')
+    key.include?("..")
   end
 
   def until_line_range(key)
     if until_line?(key)
-      lines = Array.new
-      lines_range = key.tr('line_', '')
+      lines = []
+      lines_range = key.tr("line_", "")
       first_line = lines_range[0].to_i
       last_line = lines_range[-1].to_i
 
-      for line in first_line..last_line do
+      (first_line..last_line).each do |line|
         lines.push(line)
       end
 
       return lines
     end
-    return Array.new
+    []
   end
 
-  def multiple_line(key)
-  end
+  def multiple_line(key); end
 
   def valid?
     if @doc_pattern.instance_of?(Hash)

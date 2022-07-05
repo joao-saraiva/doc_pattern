@@ -10,25 +10,25 @@ RSpec.describe DocPattern do
 
   describe "#until_line_range" do
     context "when there is a range" do
-      valid_key = 'line_1..3'
+      valid_key = "line_1..3"
 
-      it 'should be a until line' do
+      it "should be a until line" do
         expect(subject.until_line?(valid_key)).to be_truthy
       end
-      it 'until line should had a range' do
-        expect(subject.until_line_range(valid_key)).to eq [1,2,3]
+      it "until line should had a range" do
+        expect(subject.until_line_range(valid_key)).to eq [1, 2, 3]
       end
     end
 
     context "when there is no range" do
-      invalid_key = 'line_1'
+      invalid_key = "line_1"
 
-      it 'should not be a until line' do
+      it "should not be a until line" do
         expect(subject.until_line?(invalid_key)).to be_falsey
       end
-      it 'single line should not had a range' do
+      it "single line should not had a range" do
         expect(subject.until_line_range(invalid_key)).to eq []
-      end 
+      end
     end
   end
 
