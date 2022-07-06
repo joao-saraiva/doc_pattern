@@ -27,4 +27,16 @@ RSpec.describe String do
       end
     end
   end
+
+  describe "#multiple_line" do
+    describe "when string contains multiple lines" do
+      subject { "line_1,2" }
+      it { is_expected.to be_multiple_line }
+    end
+
+    describe "when string not contains multiple lines" do
+      subject { "line_1" }
+      it { is_expected.to_not be_multiple_line }
+    end
+  end
 end

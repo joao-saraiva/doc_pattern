@@ -11,6 +11,10 @@ class String
     include?("..")
   end
 
+  def multiple_line?
+    tr("line_", "").split(",").size > 1
+  end
+
   def until_line_range
     if until_line?
       lines = []
