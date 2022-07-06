@@ -26,15 +26,16 @@ class DocPattern
 
       formated_line = line.strip
       current_line = "line#{line_counter}"
+      symbol_current_line = current_line.to_sym
       separator = @doc_pattern[current_line]["separator"]
-      lines[current_line.to_sym] = {}
+      lines[symbol_current_line] = {}
 
       if separator
         formated_line.split(separator).each_with_index do |element, index|
-          lines[current_line.to_sym] = lines[current_line.to_sym].merge("element#{index + 1}": element.strip)
+          lines[symbol_current_line] = lines[symbol_current_line].merge("element#{index + 1}": element.strip)
         end
       else
-        lines[current_line.to_sym] = { element1: formated_line }
+        lines[symbol_current_line] = { element1: formated_line }
       end
     end
 
@@ -48,7 +49,7 @@ class DocPattern
   def valid?
     if @doc_pattern.instance_of?(Hash) && @keys
 
-      has_specif_line_rule = @keys.any? { |key| key.include?("line") && !@keys.include?("every_line") }
+      has_specif_line_rule = @keys.any? { |key| key.include?("line") && !key.include?("every_line") }
       has_every_line_rule = @keys.include?("every_line")
 
       return (has_every_line_rule && !has_specif_line_rule) || (!has_every_line_rule && has_specif_line_rule)
