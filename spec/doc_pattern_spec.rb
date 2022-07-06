@@ -27,4 +27,33 @@ RSpec.describe DocPattern do
       it { is_expected.to be_invalid }
     end
   end
+
+  describe "#storage_doc" do
+    describe "default document" do
+      it "is expected to return all lines" do
+        subject.storage_doc("lib/json/doc/default.txt")
+
+        expected_storage = {
+          line1: {
+            element1: "first line",
+            element2: "first line"
+          },
+          line2: {
+            element1: "second line",
+            element2: "second line"
+          }
+        }
+
+        expect(subject.lines).to eq expected_storage
+      end
+    end
+
+    describe "invalid documents" do
+      describe "empty document" do
+        it "should return an empty document error" do
+          expect { subject.storage_doc("lib/json/doc/invalid.txt") }.to raise_error("Empty file")
+        end
+      end
+    end
+  end
 end

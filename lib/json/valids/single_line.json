@@ -1,5 +1,9 @@
 {
-  "line_1": {
-    "seprator": "."
+  "line1": {
+    "separator": ","
+  },
+
+  "line2": {
+    "separator": ","
   }
 }
